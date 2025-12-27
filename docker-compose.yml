@@ -2,7 +2,7 @@ services:
     backend:
         build: .
         user: "1000:1000"
-        container_name: project-backend
+        container_name: url-shortner-backend
         volumes:
             - .:/app
         env_file: .env
@@ -12,16 +12,16 @@ services:
 
     database:
         image: postgres:18
-        container_name: project-db
+        container_name: url-shortner-db
         restart: always
         environment:
-            POSTGRES_USER: project_admin
+            POSTGRES_USER: url-shortner_admin
             POSTGRES_PASSWORD: "12345678"
-            POSTGRES_DB: project_db
+            POSTGRES_DB: url-shortner_db
         ports:
             - "5432:5432"
         volumes:
-            - project_pgdata:/var/lib/postgresql
+            - url-shortner_pgdata:/var/lib/postgresql
 
 volumes:
-    project_pgdata:
+    url-shortner_pgdata:
