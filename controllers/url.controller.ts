@@ -1,6 +1,11 @@
 import { Request, Response } from "express";
 import { generateCharacters } from "../utils/generateCharacters.js";
-import { getUrl, insertUrl } from "../repositories/url.repo.js";
+import {
+    changeOriginalUrl,
+    getUrl,
+    insertUrl,
+    removeUrl,
+} from "../repositories/url.repo.js";
 import { getModeForUsageLocation } from "typescript";
 
 // @desc    Create short urls
@@ -11,7 +16,7 @@ export const createUrl = async (
     response: Response
 ): Promise<void> => {
     const data = {
-        short_url: generateCharacters(),
+        short_url: `${generateCharacters()}`,
         original_url: request.body.original_url,
     };
 
@@ -40,5 +45,40 @@ export const getOriginal = async (
             .json({ msg: "The url you requested does not exist" });
     }
 
+    // console.log(url.visit_count);
+
     response.redirect(url.original_url);
+};
+
+// @desc    change original url
+// @route   PUT /api/url
+// @access  Public
+export const updateUrl = async (
+    request: Request,
+    response: Response
+): Promise<void> => {
+    const data = {
+        short_url: request.body.short_url,
+        original_url: request.body.original_url,
+    };
+    // console.log(data);
+    const newUrl = await changeOriginalUrl(data);
+    // console.log(newUrl);
+    response.status(200).json(newUrl);
+};
+
+// @desc    delete url entry
+// @route   DELETE /api/url/
+// @access  Public
+export const deleteUrl = async (
+    request: Request,
+    response: Response
+): Promise<void> => {
+    try {
+        const url = await removeUrl(request.body.short_url);
+        if (!url) throw new Error();
+        response.status(202).json({ msg: "deleted successfully" });
+    } catch (error) {
+        response.status(404).json({ msg: "not found" });
+    }
 };

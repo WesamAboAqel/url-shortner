@@ -6,12 +6,14 @@ import errorHandler from "./middleware/error_handler.js";
 
 const app = express();
 
+app.use("/", express.static("site"));
+
 app.use(express.json());
 
 app.use(logger);
 
 app.use("/api", index);
-app.use("/api/url", url);
+app.use("/", url);
 
 app.use(errorHandler);
 

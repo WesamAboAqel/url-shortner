@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="./output.css" rel="stylesheet" />
+    </head>
+    <body class="min-h-screen flex items-center justify-center bg-gray-100">
+        <div class="bg-white p-6 rounded shadow w-full max-w-md">
+            <h1 class="text-xl font-semibold mb-4">Shorten a URL</h1>
+
+            <input
+                id="urlInput"
+                type="url"
+                placeholder="https://example.com"
+                class="w-full border p-2 rounded mb-3"
+            />
+
+            <button
+                id="shortenBtn"
+                class="w-full bg-blue-600 text-white p-2 rounded"
+            >
+                Shorten
+            </button>
+
+            <p id="result" class="mt-4 text-sm break-all"></p>
+        </div>
+
+        <script src="./main.js"></script>
+    </body>
+</html>

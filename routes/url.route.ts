@@ -1,10 +1,16 @@
 import express from "express";
-
-import { createUrl, getOriginal } from "../controllers/url.controller.js";
+import {
+    createUrl,
+    deleteUrl,
+    getOriginal,
+    updateUrl,
+} from "../controllers/url.controller.js";
 
 const router = express.Router();
 
-router.post("/add", createUrl);
+router.post("/api/url", createUrl);
 router.get("/:short_url", getOriginal);
+router.put("/api/url", updateUrl);
+router.delete("/api/url", deleteUrl);
 
 export default router;
