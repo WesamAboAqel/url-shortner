@@ -2,6 +2,8 @@
 
 Minimal URL shortener built with Express, TypeScript, Kysely, and PostgreSQL. The server exposes a JSON API for creating, updating, deleting, and redirecting shortened links, and serves a small Tailwind-powered UI from `site/`.
 
+This project is built as part of: https://roadmap.sh/projects/url-shortening-service
+
 ## Quick Start
 
 1. Install dependencies: `npm install`
